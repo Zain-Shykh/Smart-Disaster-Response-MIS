@@ -1,0 +1,206 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   SDRMIS — CYBER-TACTICAL DARK MODE DESIGN SYSTEM
+   Theme: Crisis Command Center / War Room
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── DESIGN TOKENS ──────────────────────────────────────────────────────── */
+:root {
+  /* ─ Base Palette (Obsidian / Charcoal) ─ */
+  --bg-abyss:       #0a0c10;
+  --bg-deep:        #0d1117;
+  --bg-surface:     #131820;
+  --bg-card:        #161b22;
+  --bg-elevated:    #1c2333;
+  --bg-hover:       #21283b;
+
+  /* ─ Ink (Text) ─ */
+  --ink-100:        #e6edf3;
+  --ink-200:        #c9d1d9;
+  --ink-300:        #8b949e;
+  --ink-400:        #6e7681;
+  --ink-500:        #484f58;
+
+  /* ─ Lines / Borders ─ */
+  --line-100:       rgba(48, 54, 61, 0.5);
+  --line-200:       rgba(56, 68, 84, 0.6);
+  --line-300:       rgba(110, 118, 129, 0.35);
+  --line-glow:      rgba(0, 200, 255, 0.12);
+
+  /* ─ Accent: Emergency Crimson ─ */
+  --crimson-400:    #ff4d4d;
+  --crimson-500:    #ff0000;
+  --crimson-600:    #cc0000;
+  --crimson-glow:   rgba(255, 0, 0, 0.15);
+  --crimson-pulse:  rgba(255, 0, 0, 0.08);
+
+  /* ─ Accent: Cyber Lime ─ */
+  --lime-400:       #7fff5e;
+  --lime-500:       #39ff14;
+  --lime-600:       #2bcc10;
+  --lime-glow:      rgba(57, 255, 20, 0.12);
+
+  /* ─ Accent: Electric Blue ─ */
+  --blue-400:       #58a6ff;
+  --blue-500:       #00c8ff;
+  --blue-600:       #0098cc;
+  --blue-glow:      rgba(0, 200, 255, 0.15);
+
+  /* ─ Accent: Warning Amber ─ */
+  --amber-400:      #ffcc00;
+  --amber-500:      #f0a500;
+  --amber-glow:     rgba(240, 165, 0, 0.12);
+
+  /* ─ Geometry & Motion ─ */
+  --radius-sm:      2px;
+  --radius-md:      4px;
+  --radius-lg:      6px;
+  --clip-corner:    polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  --clip-corner-sm: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  --clip-btn:       polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+
+  --shadow-glow:    0 0 20px rgba(0, 200, 255, 0.07), 0 0 60px rgba(0, 200, 255, 0.03);
+  --shadow-crimson: 0 0 20px rgba(255, 0, 0, 0.1), 0 0 60px rgba(255, 0, 0, 0.04);
+  --shadow-soft:    0 4px 24px rgba(0, 0, 0, 0.5);
+
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-base: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ─ Typography ─ */
+  --font-heading:   'Orbitron', 'Inter', sans-serif;
+  --font-body:      'Inter', 'Segoe UI', sans-serif;
+  --font-mono:      'JetBrains Mono', 'Consolas', monospace;
+
+  font-family: var(--font-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── RESET ─────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink-200);
+  background: var(--bg-abyss);
+  /* Subtle hex grid background */
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(0, 200, 255, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 0, 0.03) 0%, transparent 50%),
+    repeating-conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg 60deg,
+      rgba(0, 200, 255, 0.008) 60deg 120deg,
+      transparent 120deg 180deg
+    );
+}
+
+/* ── TYPOGRAPHY ─────────────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  margin: 0;
+  color: var(--ink-100);
+  font-family: var(--font-heading);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+h1 { font-weight: 800; }
+h2 { font-weight: 700; }
+h3 { font-weight: 600; }
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+}
+
+/* ── SCROLLBAR ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-200);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-600);
+}
+
+/* ── GLOBAL ANIMATIONS ──────────────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
+@keyframes scan-line {
+  0%   { top: -2px; }
+  100% { top: 100%; }
+}
+
+@keyframes glitch-in {
+  0%   { transform: translate(-3px, 2px) skewX(-2deg); opacity: 0; filter: hue-rotate(90deg); }
+  20%  { transform: translate(2px, -1px) skewX(1deg);  opacity: 0.7; filter: hue-rotate(-30deg); }
+  40%  { transform: translate(-1px, 1px) skewX(0deg);  opacity: 0.9; filter: hue-rotate(15deg); }
+  100% { transform: translate(0, 0) skewX(0deg);       opacity: 1;   filter: hue-rotate(0deg); }
+}
+
+@keyframes border-flow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 200, 255, 0.4); }
+  70%  { box-shadow: 0 0 0 8px rgba(0, 200, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 200, 255, 0); }
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes data-stream {
+  0%   { opacity: 0; transform: translateY(-8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 4px currentColor, 0 0 11px currentColor, 0 0 19px currentColor;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 200, 255, 0.25);
+  color: var(--ink-100);
+}

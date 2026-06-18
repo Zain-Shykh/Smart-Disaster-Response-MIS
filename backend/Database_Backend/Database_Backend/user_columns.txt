@@ -1,0 +1,11 @@
+COLUMN_NAME                                                                                                                     
+--------------------------------------------------------------------------------------------------------------------------------
+UserID                                                                                                                          
+FirstName                                                                                                                       
+LastName                                                                                                                        
+Username                                                                                                                        
+PasswordHash                                                                                                                    
+Email                                                                                                                           
+CreatedAt                                                                                                                       
+LastLoginAt                                                                                                                     
+IsActive                                                                                                                        

@@ -1,0 +1,84 @@
+SMART DISASTER RESPONSE MIS - HOW TO RUN ON LOCALHOST (WINDOWS)
+Date: 2026-04-27
+
+1) PREREQUISITES
+- .NET SDK 8.0+
+- Node.js 18+ and npm
+- SQL Server instance running (example: localhost\SQLEXPRESS)
+- Database scripts already executed (at least DDL.sql and bootstrap_auth_seed.sql)
+
+2) POPULATE PAKISTANI DATA (DONATIONS, EXPENSES, APPROVALS)
+Open terminal in project root and run one command:
+
+Batch (CMD):
+run-pakistan-seed.bat
+
+PowerShell:
+.\run-pakistan-seed.ps1
+
+If your SQL Server instance is not localhost\SQLEXPRESS, pass it:
+run-pakistan-seed.bat YOUR_SERVER_NAME
+.\run-pakistan-seed.ps1 -Server "YOUR_SERVER_NAME"
+
+3) CHECK BACKEND CONNECTION STRING
+Open:
+backend\Database_Backend\Database_Backend\appsettings.json
+
+Make sure this points to your local SQL Server instance, for example:
+"ConnectionStrings": {
+  "DefaultConnection": "Server=localhost\\SQLEXPRESS;Database=Final_DB;Trusted_Connection=True;TrustServerCertificate=True;"
+}
+
+4) START BACKEND (API)
+Open terminal #1 in project root and run:
+
+cd backend\Database_Backend\Database_Backend
+dotnet restore
+dotnet run
+
+Alternate (run from the solution folder):
+cd backend\Database_Backend
+run-backend.bat   # Windows: runs the correct project path
+or
+./run-backend.ps1 # PowerShell: runs the correct project path
+Backend URLs:
+- http://localhost:5226
+- Swagger: http://localhost:5226/swagger
+
+5) PREPARE FRONTEND ENV 
+Open terminal #2 in project root and run:
+
+cd frontend
+if not exist .env copy .env.example .env
+npm install
+
+The frontend uses:
+- VITE_BACKEND_ORIGIN=http://localhost:5226
+
+6) START FRONTEND (VITE)
+In terminal #2 (inside frontend), run:
+
+npm run dev
+
+Frontend URL:
+- http://localhost:5173
+
+7) OPEN APP
+Open browser:
+http://localhost:5173
+
+8) DEFAULT LOGIN (FROM BOOTSTRAP SCRIPT)
+- admin1 / Admin@1234
+- ops2 / Ops@1234
+- field1 / Field@1234
+- warehouse1 / Warehouse@1234
+- finance1 / Finance@1234
+
+9) STOP SERVICES
+- In backend terminal: Ctrl + C
+- In frontend terminal: Ctrl + C
+
+QUICK TROUBLESHOOTING
+- If frontend cannot call API, verify backend is running at http://localhost:5226.
+- If backend fails DB connection, re-check appsettings.json server name.
+- If port 5173 is busy, Vite may choose another port shown in terminal output.
